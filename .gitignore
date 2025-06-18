@@ -1,0 +1,82 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Build output
+dist/
+build/git
+out/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Misc
+coverage/
+*.tgz
+!.github
+
+# Dependency directories
+jspm_packages/
+bower_components/
+# ASP.NET Core
+bin/
+obj/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.user
+*.vspscc
+*.vssscc
+*.dbmdl
+*.bak
+*.sql
+*.pdb
+*.cache
+*.config
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Publish output
+wwwroot/
+publish/
+app.publish/
+
+# Azure Pipelines
+.azure-pipelines/
+
+# Local History for Visual Studio
+.localhistory/
+
+# User-specific files
+*.swp
+*.tmp
+*.temp
