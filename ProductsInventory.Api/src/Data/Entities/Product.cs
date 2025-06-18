@@ -21,8 +21,8 @@ namespace ProductsInventory.Api.Entities
         [Precision(6,2)]
         public double? Price { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public List<Category>? Categories { get; set; }
+        // [JsonConverter(typeof(JsonStringEnumConverter))]
+        // public List<Category>? Categories { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTimeOffset CreatedAt { get; } = DateTimeOffset.UtcNow;

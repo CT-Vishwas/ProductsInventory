@@ -18,8 +18,7 @@ namespace ProductsInventory.Api.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: true),
-                    Price = table.Column<double>(type: "REAL", precision: 6, scale: 2, nullable: true),
-                    Categories = table.Column<string>(type: "TEXT", nullable: true)
+                    Price = table.Column<double>(type: "REAL", precision: 6, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {

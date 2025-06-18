@@ -17,13 +17,10 @@ namespace ProductsInventory.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
 
-            modelBuilder.Entity("ProductsInventory.Api.Models.Product", b =>
+            modelBuilder.Entity("ProductsInventory.Api.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Categories")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

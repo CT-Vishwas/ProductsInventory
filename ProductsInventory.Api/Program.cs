@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using ProductsInventory.Api.Data;
+using ProductsInventory.Api.Mappings;
 using ProductsInventory.Api.Repositories;
 using ProductsInventory.Api.Services;
 
@@ -19,6 +20,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 // 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

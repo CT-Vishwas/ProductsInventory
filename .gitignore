@@ -80,3 +80,4 @@ app.publish/
 *.swp
 *.tmp
 *.temp
+.fake
