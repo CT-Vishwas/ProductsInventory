@@ -20,11 +20,11 @@ ProjectInventory.API is a RESTful web service designed to manage product invento
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-org/projectinventory.api.git
+    git clone https://github.com/vishwasks32/productsinventory.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd projectinventory.api
+    cd ProductsInventory.Api
     ```
 3. Restore dependencies and build the project:
     ```bash
@@ -38,21 +38,28 @@ ProjectInventory.API is a RESTful web service designed to manage product invento
 
 ### Running the API
 
+1. Run the migrations & updates
+
+```bash
+dotnet ef database update
+```
+
+2. Run the app
 ```bash
 dotnet run
 ```
 
-The API will be available at `http://localhost:5000` by default.
+The API will be available at `http://localhost:5155` by default.
 
 ## API Endpoints
 
-| Method | Endpoint           | Description                |
-|--------|--------------------|----------------------------|
-| GET    | /api/products      | List all products          |
-| GET    | /api/products/{id} | Get product by ID          |
-| POST   | /api/products      | Create a new product       |
-| PUT    | /api/products/{id} | Update an existing product |
-| DELETE | /api/products/{id} | Delete a product           |
+| Method | Endpoint           | Description                |Authentication|
+|--------|--------------------|----------------------------|--------------|
+| GET    | /api/products      | List all products          | Not Required |
+| GET    | /api/products/{id} | Get product by ID          | Not Required |
+| POST   | /api/products      | Create a new product       | Requires "admin" role |
+| PUT    | /api/products/{id} | Update an existing product | Requires "admin" role |
+| DELETE | /api/products/{id} | Delete a product           | Requires "admin" role |
 
 ## Contributing
 
