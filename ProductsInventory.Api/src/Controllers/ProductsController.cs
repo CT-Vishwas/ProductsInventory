@@ -21,14 +21,6 @@ public class ProductsController : ControllerBase
     }
 
 
-    // [HttpPost]
-    // public ActionResult CreateProduct([FromBody] Product product)
-    // {
-    //     Product newProduct = _productsService.AddProduct(product);
-    //     return Ok(newProduct);
-    // }
-
-
     // Adding a Product
     // only allowed by admin
     [Authorize(Roles ="admin")]
@@ -43,13 +35,6 @@ public class ProductsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, new ApiResponse<ProductDto>(true, "Product Created Successfully", result));
     }
 
-    // [HttpGet]
-    // public ActionResult GetAll()
-    // {
-    //     IEnumerable<Product> products = _productsService.GetAllProducts();
-    //     return Ok(products);
-    // }
-
     // Get List of Products
     [HttpGet]
     public async Task<IActionResult> GetAll()
@@ -58,13 +43,6 @@ public class ProductsController : ControllerBase
         return Ok(new ApiResponse<IEnumerable<ProductDto>>(true, "Products Fetched Successfully", result));
     }
 
-    // GET: http://localhost/Products/1
-    // [HttpGet("{id}")]
-    // public ActionResult GetProduct(string id)
-    // {
-    //     Product product = _productsService.GetProduct(id);
-    //     return Ok(product);
-    // }
 
     // Get a Product by Id
     [HttpGet("{id}")]
@@ -103,17 +81,4 @@ public class ProductsController : ControllerBase
         }
         return Ok(new ApiResponse<bool>(true, "Product Deleted Successfully", true));
     }
-    // [HttpPut("{id}")]
-    // public ActionResult UpdateProduct([FromBody] Product product, string id)
-    // {
-    //     Product product1 = _productsService.UpdateProduct(id, product);
-    //     return Ok(product1);
-    // }
-
-    // [HttpDelete("{id}")]
-    // public ActionResult DeleteProduct(string id)
-    // {
-    //     _productsService.DeleteProduct(id);
-    //     return NoContent();
-    // }
 }
