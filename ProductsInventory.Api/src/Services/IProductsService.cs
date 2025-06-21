@@ -19,5 +19,8 @@ namespace ProductsInventory.Api.Services
         Task<IEnumerable<ProductDto>> GetAll();
         Task<ProductDto> GetById(Guid id);
 
+        Task<ProductDto> UpdateProduct(Guid id, CreateProductRequest request);
+        Task<bool> DeleteProductAsync(Guid id);
+
     }
 }

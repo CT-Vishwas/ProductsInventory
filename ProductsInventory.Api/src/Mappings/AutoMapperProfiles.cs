@@ -1,5 +1,6 @@
 using AutoMapper;
 using ProductsInventory.Api.Data.DTOs;
+using ProductsInventory.Api.Data.Entities;
 using ProductsInventory.Api.Data.Requests;
 using ProductsInventory.Api.Entities;
 
@@ -10,6 +11,11 @@ public class AutoMapperProfiles : Profile
     {
         CreateMap<Product, ProductDto>().ReverseMap();
         CreateMap<CreateProductRequest, Product>();
+        CreateMap<User, UserDto>();
+        CreateMap<User, UserRequest>()
+            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.PasswordHash));
+        CreateMap<UserRequest, User>()
+            .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
     }
 
 }

@@ -2,6 +2,7 @@ using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ProductsInventory.Api.Data.Entities;
 using ProductsInventory.Api.Entities;
 
 namespace ProductsInventory.Api.Data;
@@ -9,14 +10,20 @@ namespace ProductsInventory.Api.Data;
 public class ApplicationDbContext : DbContext
 {
     public DbSet<Product> products { get; set; }
+
+    public DbSet<User> Users { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 : base(options)
     {
     }
-    
- protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<User>()
+            .HasIndex(u=> u.Username)
+            .IsUnique();
         // modelBuilder.Entity<Product>()
         //     .Property(c => c.Categories)
         //     .HasConversion(

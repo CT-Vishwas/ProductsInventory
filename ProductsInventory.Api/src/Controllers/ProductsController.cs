@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductsInventory.Api.Data.DTOs;
 using ProductsInventory.Api.Data.Requests;
@@ -27,8 +28,10 @@ public class ProductsController : ControllerBase
     //     return Ok(newProduct);
     // }
 
-    
+
     // Adding a Product
+    // only allowed by admin
+    [Authorize(Roles ="admin")]
     [HttpPost]
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request)
     {
@@ -63,7 +66,7 @@ public class ProductsController : ControllerBase
     //     return Ok(product);
     // }
 
-        // Get a Product by Id
+    // Get a Product by Id
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
@@ -75,7 +78,31 @@ public class ProductsController : ControllerBase
         return Ok(new ApiResponse<ProductDto>(true, "Product Fetched Successfully", result));
     }
 
+    // Update a Product
+    [Authorize(Roles ="admin")]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] CreateProductRequest request)
+    {
+        var result = await _productService.UpdateProduct(id, request);
+        if (result == null)
+        {
+            return NotFound(new ApiResponse<ProductDto>(false, "Product Not Found", null));
+        }
+        return Ok(new ApiResponse<ProductDto>(true, "Product Updated Successfully", result));
+    }
 
+    // Delete a Product
+    [Authorize(Roles ="admin")]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(Guid id)
+    {
+        var result = await _productService.DeleteProductAsync(id);
+        if (!result)
+        {
+            return NotFound(new ApiResponse<bool>(false, "Product Not Found", false));
+        }
+        return Ok(new ApiResponse<bool>(true, "Product Deleted Successfully", true));
+    }
     // [HttpPut("{id}")]
     // public ActionResult UpdateProduct([FromBody] Product product, string id)
     // {

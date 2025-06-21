@@ -16,7 +16,7 @@ public class ProductsService : IProductsService
     public ProductsService(IProductsRepository productsRepository, IMapper mapper)
     {
         _productsRepository = productsRepository;
-        _mapper =   mapper;
+        _mapper = mapper;
 
     }
 
@@ -42,9 +42,33 @@ public class ProductsService : IProductsService
         var productDto = _mapper.Map<ProductDto>(product);
         return productDto;
     }
+    
+        public async Task<ProductDto> UpdateProduct(Guid id, CreateProductRequest request)
+    {
+        var product = await _productsRepository.GetByIdAsync(id);
+        if (product == null)
+        {
+            return null;
+        }
 
+        _mapper.Map(request, product);
+        await _productsRepository.UpdateAsync(product);
 
+        var productDto = _mapper.Map<ProductDto>(product);
+        return productDto;
+    }
 
+    public async Task<bool> DeleteProductAsync(Guid id)
+    {
+        var product = _productsRepository.GetByIdAsync(id);
+        if(product is null)
+        {
+            return false;
+        }
+        await _productsRepository.DeleteAsync(id);
+        return true;
+
+    }
     // public Product AddProduct(Product product)
     // {
     //     return _productsRepository.Save(product);
